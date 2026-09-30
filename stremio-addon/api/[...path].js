@@ -5,7 +5,7 @@
  */
 
 const { getRouter } = require("stremio-addon-sdk");
-const builder = require("../lib/addon");
+const builder = require("./lib/addon");
 
 const MAINTENANCE_STREAM = JSON.stringify({
   streams: [{
