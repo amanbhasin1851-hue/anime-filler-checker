@@ -30,7 +30,13 @@ module.exports = (req, res) => {
     return;
   }
 
-  const reqPath = req.url || "";
+ // In-app webviews (Nuvio) open the bare root → redirect to configure UI
+if (reqPath === "/" || reqPath === "") {
+  res.statusCode = 302;
+  res.setHeader("Location", "/configure");
+  res.end();
+  return;
+}
 
   // Maintenance mode: intercept early, serve cached static response
   if (builder.MAINTENANCE_MODE && /\/(stream|subtitles)\//.test(reqPath)) {
